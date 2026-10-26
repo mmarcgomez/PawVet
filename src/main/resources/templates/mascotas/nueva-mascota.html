@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Nueva mascota</title>
+
+    <link rel="stylesheet"
+          th:href="@{/css/nueva-mascota.css}">
+</head>
+
+<body>
+
+<div class="form-container">
+
+    <h1>
+        Nueva mascota
+    </h1>
+
+    <form th:action="@{/mascotas/guardar}"
+          th:object="${mascota}"
+          method="post">
+
+        <input type="hidden"
+               name="clienteId"
+               th:value="${clienteId}">
+
+        <div class="input-group">
+            <label>Nombre</label>
+
+            <input type="text"
+                   th:field="*{nombre}">
+        </div>
+
+        <div class="input-group">
+
+            <label>Especie</label>
+
+            <select th:field="*{especie}"
+                    id="especieSelect">
+
+                <option th:value="${T(com.pawclinic.model.Especie).CANINO}">
+                    Canino
+                </option>
+
+                <option th:value="${T(com.pawclinic.model.Especie).FELINO}">
+                    Felino
+                </option>
+
+                <option th:value="${T(com.pawclinic.model.Especie).OTRO}">
+                    Otro
+                </option>
+
+            </select>
+
+        </div>
+
+        <div class="input-group">
+
+            <label>Raza / tipo</label>
+
+            <input type="text"
+                   id="razaInput"
+                   th:field="*{raza}"
+                   autocomplete="off">
+
+            <div id="razasSuggestions"
+                 class="suggestions-box">
+            </div>
+
+        </div>
+        <div class="input-group">
+
+            <label>Fecha de nacimiento</label>
+
+            <input type="date"
+                   th:field="*{fechaNacimiento}">
+
+        </div>
+
+        <div class="input-group">
+
+            <label>Sexo</label>
+
+            <select th:field="*{sexo}">
+
+                <option th:value="${T(com.pawclinic.model.Sexo).MACHO}">
+                    Macho
+                </option>
+
+                <option th:value="${T(com.pawclinic.model.Sexo).HEMBRA}">
+                    Hembra
+                </option>
+
+                <option th:value="${T(com.pawclinic.model.Sexo).DESCONOCIDO}">
+                    Desconocido
+                </option>
+
+            </select>
+
+        </div>
+
+        <button type="submit">
+            Guardar mascota
+        </button>
+
+    </form>
+
+</div>
+<script th:src="@{/js/razas.js}"></script>
+</body>
+</html>

@@ -1,0 +1,243 @@
+/* =========================
+   RESET
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+/* =========================
+   BODY
+========================= */
+
+body{
+    font-family:"Segoe UI",sans-serif;
+    background:#f4f6f9;
+    color:#1f2937;
+}
+
+/* =========================
+   LAYOUT
+========================= */
+
+.page{
+    display:flex;
+    min-height:100vh;
+}
+
+/* =========================
+   SIDEBAR
+========================= */
+
+.sidebar{
+    width:230px;
+    background:white;
+    border-right:1px solid #e5e7eb;
+    display:flex;
+    flex-direction:column;
+    padding:30px 20px;
+    flex-shrink:0;
+}
+
+.logo{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px 0;
+    margin-bottom:50px;
+}
+
+.logo img{
+    width:140px;
+    height:auto;
+    object-fit:contain;
+}
+
+/* =========================
+   MENU
+========================= */
+
+.menu{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.menu a{
+    text-decoration:none;
+    color:#374151;
+    padding:14px 16px;
+    border-radius:12px;
+    transition:.2s;
+}
+
+.menu a:hover{
+    background:#eff6ff;
+}
+
+.menu a.active{
+    background:#2563eb;
+    color:white;
+    font-weight:600;
+}
+
+/* =========================
+   CONTENIDO
+========================= */
+
+.contenido{
+    flex:1;
+    padding:40px;
+    overflow:auto;
+}
+
+/* =========================
+   CABECERA
+========================= */
+
+.top-bar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:35px;
+}
+
+.top-bar h1{
+    font-size:34px;
+    font-weight:700;
+}
+
+/* =========================
+   BUSCADOR
+========================= */
+
+.search-form{
+    display:flex;
+    gap:12px;
+}
+
+.search-form input{
+    width:280px;
+    padding:12px 16px;
+    border:1px solid #d1d5db;
+    border-radius:12px;
+    font-size:14px;
+}
+
+.search-form input:focus{
+    outline:none;
+    border-color:#2563eb;
+    box-shadow:0 0 0 3px rgba(37,99,235,.15);
+}
+
+.search-form button{
+    border:none;
+    background:#2563eb;
+    color:white;
+    padding:12px 18px;
+    border-radius:12px;
+    cursor:pointer;
+    font-weight:600;
+    transition:.2s;
+}
+
+.search-form button:hover{
+    background:#1d4ed8;
+}
+
+/* =========================
+   GRID CLIENTES
+========================= */
+
+.clientes-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(320px,1fr));
+    gap:25px;
+}
+
+/* =========================
+   TARJETA CLIENTE
+========================= */
+
+.cliente-card{
+    background:white;
+    border-radius:20px;
+    padding:25px;
+    box-shadow:0 4px 12px rgba(0,0,0,.06);
+    transition:.2s;
+}
+
+.cliente-card:hover{
+    transform:translateY(-3px);
+}
+
+.cliente-card h2{
+    margin-bottom:18px;
+    font-size:20px;
+    color:#1f2937;
+}
+
+.cliente-card p{
+    margin-bottom:10px;
+    color:#667085;
+    font-size:14px;
+}
+
+.cliente-card span{
+    color:#1f2937;
+    font-weight:600;
+}
+
+/* =========================
+   BOTÓN VER FICHA
+========================= */
+
+.btn-ver{
+    display:inline-block;
+    margin-top:15px;
+    text-decoration:none;
+    background:#2563eb;
+    color:white;
+    padding:12px 18px;
+    border-radius:12px;
+    font-weight:600;
+    transition:.2s;
+}
+
+.btn-ver:hover{
+    background:#1d4ed8;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:900px){
+
+    .page{
+        flex-direction:column;
+    }
+
+    .sidebar{
+        width:100%;
+        border-right:none;
+        border-bottom:1px solid #e5e7eb;
+    }
+
+    .top-bar{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:20px;
+    }
+
+    .search-form{
+        width:100%;
+    }
+
+    .search-form input{
+        flex:1;
+        width:auto;
+    }
+}

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Nuevo cliente</title>
+    <link rel="stylesheet" th:href="@{/css/nuevo-cliente.css}">
+</head>
+<body>
+
+<div class="form-container">
+
+    <h1 class="form-title">
+        Nuevo cliente
+    </h1>
+
+    <p class="form-subtitle">
+        Registro de nuevo cliente en PAW Clinic
+    </p>
+
+    <form id="clienteForm"
+          th:action="@{/clientes/guardar}"
+          th:object="${cliente}"
+          method="post">
+
+        <div class="form-grid">
+
+            <div class="input-group">
+                <label>DNI</label>
+                <input type="text"
+                       id="dni"
+                       th:field="*{dni}"
+                       placeholder="12345678A">
+            </div>
+
+            <div class="input-group">
+                <label>Teléfono</label>
+                <input type="text"
+                       th:field="*{telefono}"
+                       placeholder="600123123">
+            </div>
+
+            <div class="input-group">
+                <label>Nombre</label>
+                <input type="text"
+                       th:field="*{nombre}"
+                       placeholder="Nombre">
+            </div>
+
+            <div class="input-group">
+                <label>Apellidos</label>
+                <input type="text"
+                       th:field="*{apellidos}"
+                       placeholder="Apellidos">
+            </div>
+
+            <div class="input-group full-width">
+                <label>Email</label>
+                <input type="email"
+                       th:field="*{email}"
+                       placeholder="cliente@email.com">
+            </div>
+
+            <div class="input-group full-width">
+                <label>Dirección</label>
+                <input type="text"
+                       th:field="*{calle}"
+                       placeholder="Calle Mayor 1">
+            </div>
+
+            <div class="input-group">
+                <label>Código Postal</label>
+                <input type="text"
+                       th:field="*{codigoPostal}"
+                       placeholder="28911">
+            </div>
+
+            <div class="input-group">
+                <label>Ciudad</label>
+                <input type="text"
+                       th:field="*{ciudad}"
+                       placeholder="Madrid">
+            </div>
+
+        </div>
+
+        <button type="submit"
+                class="submit-btn">
+
+            Guardar cliente
+
+        </button>
+
+    </form>
+
+    <!-- MODAL CLIENTE EXISTE -->
+
+    <div id="modalClienteExiste" class="modal hidden">
+
+        <div class="modal-content">
+
+            <h2>Cliente ya registrado</h2>
+
+            <p>
+                Ya existe un cliente con ese DNI.
+            </p>
+
+            <div class="modal-buttons">
+
+                <a id="verFichaBtn" href="#">
+                    Ver ficha
+                </a>
+
+                <button type="button"
+                        onclick="cerrarModal()">
+                    Cancelar
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+<script th:src="@{/js/nuevo-cliente.js}"></script>
+</body>
+</html>

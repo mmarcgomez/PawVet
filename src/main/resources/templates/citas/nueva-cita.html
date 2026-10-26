@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Nueva cita</title>
+
+    <link rel="stylesheet"
+          th:href="@{/css/nueva-cita.css}">
+
+</head>
+
+<body>
+
+<div class="page-container">
+
+    <!-- HEADER -->
+
+    <div class="top-bar">
+
+        <div>
+
+            <h1>
+                Nueva cita
+            </h1>
+
+            <p>
+                Gestión de agenda veterinaria
+            </p>
+
+        </div>
+
+        <a th:href="@{/clientes/{id}(id=${mascota.cliente.id})}"
+           class="back-button">
+
+            ← Volver
+        </a>
+
+    </div>
+
+    <!-- CARD -->
+
+    <div class="card">
+        <div class="alerta-error"
+             th:if="${param.error != null}">
+
+            Ya existe una cita en ese horario.
+            Selecciona otra hora disponible.
+
+        </div>
+        <div class="alerta-error"
+             th:if="${param.error == 'hora'}">
+
+            Debes seleccionar una hora.
+
+        </div>
+        <!-- INFO -->
+
+        <div class="pet-info">
+
+            <div>
+
+                <span>Mascota</span>
+
+                <h2 th:text="${mascota.nombre}">
+                    Pistacho
+                </h2>
+
+            </div>
+
+            <div>
+
+                <span>Cliente</span>
+
+                <h2 th:text="${mascota.cliente.nombre}">
+                    Mar
+                </h2>
+
+            </div>
+
+        </div>
+
+        <!-- FORM -->
+
+        <form th:action="@{/citas/guardar}"
+              method="post">
+
+            <!-- ID MASCOTA -->
+
+            <input type="hidden"
+                   name="mascotaId"
+                   th:value="${mascota.id}">
+
+            <div class="form-grid">
+
+                <!-- MOTIVO -->
+
+                <div class="input-group">
+
+                    <label>
+                        Servicio
+                    </label>
+
+                    <select id="motivoSelect"
+                            name="motivo">
+
+                        <option
+                                th:each="motivo : ${motivos}"
+                                th:value="${motivo}"
+                                th:text="${motivo}">
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <!-- FECHA -->
+
+                <div class="input-group">
+
+                    <label>
+                        Fecha
+                    </label>
+
+                    <input type="date"
+                           id="fechaInput"
+                           name="fecha"
+                           th:value ="${fechaSeleccionada}"
+                           required>
+
+                </div>
+
+            </div>
+
+            <!-- HORA HIDDEN -->
+
+            <input type="hidden"
+                   name="hora"
+                   id="horaSeleccionada">
+
+            <!-- HORAS -->
+
+            <div class="horas-container">
+
+                <h3>
+                    Horas disponibles
+                </h3>
+
+                <div class="horas-grid">
+
+                    <button type="button"
+                            th:each="hora : ${horas}"
+                            th:text="${#temporals.format(hora, 'HH:mm')}"
+                            th:disabled="${horasOcupadas.contains(hora)}"
+                            th:classappend="${horasOcupadas.contains(hora)}? 'ocupada': 'disponible'"
+                            class="hora">
+
+                    </button>
+
+                </div>
+            </div>
+
+            <!-- DETALLES -->
+
+            <div class="input-group">
+
+                <label>
+                    Detalles
+                </label>
+
+                <textarea name="detalles"
+                          rows="4">
+                </textarea>
+
+            </div>
+            <div class="card historial-card">
+                <div class="historial-container"
+                     th:if="${not #lists.isEmpty(historial)}">
+
+                    <h3>Próximas citas</h3>
+
+                    <div class="cita-card"
+                         th:each="cita : ${historial}">
+
+                        <div class="cita-fecha"
+                             th:text="${#temporals.format(cita.fechaHora,'dd/MM/yyyy HH:mm')}">
+                        </div>
+
+                        <div class="cita-motivo"
+                             th:text="${cita.motivo.label}">
+                        </div>
+
+                        <div class="cita-detalles"
+                             th:text="${#strings.isEmpty(cita.detalles) ? '-' : cita.detalles}">
+                        </div>
+
+                    </div>
+
+                </div>
+
+            <!-- SUBMIT -->
+
+            <button class="submit-btn"
+                    type="submit">
+
+                Confirmar cita
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+<script th:src="@{/js/nueva-cita.js}"></script>
+</body>
+</html>

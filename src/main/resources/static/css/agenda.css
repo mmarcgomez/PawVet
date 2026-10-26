@@ -1,0 +1,409 @@
+/* =========================
+   RESET
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+/* =========================
+   BODY
+========================= */
+
+body{
+    font-family:"Segoe UI",sans-serif;
+    background:#f4f6f9;
+    color:#1f2937;
+}
+
+/* =========================
+   LAYOUT
+========================= */
+
+.layout{
+    display:flex;
+    min-height:100vh;
+}
+
+/* =========================
+   SIDEBAR
+========================= */
+
+.sidebar{
+    width:230px;
+    background:white;
+    border-right:1px solid #e5e7eb;
+    display:flex;
+    flex-direction:column;
+    padding:30px 20px;
+}
+
+.logo{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px 0;
+    margin-bottom:50px;
+}
+
+.logo img{
+    width:140px;
+    height:auto;
+    object-fit:contain;
+}
+
+.logo h2{
+    color:#2563eb;
+    font-size:32px;
+    font-weight:800;
+}
+
+.logo span{
+    color:#6b7280;
+    font-size:13px;
+}
+
+/* =========================
+   MENU
+========================= */
+
+.menu{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.menu a{
+    text-decoration:none;
+    color:#374151;
+    padding:14px 16px;
+    border-radius:12px;
+    transition:.2s;
+}
+
+.menu a:hover{
+    background:#eff6ff;
+}
+
+.menu a.active{
+    background:#2563eb;
+    color:white;
+    font-weight:600;
+}
+
+/* =========================
+   MAIN
+========================= */
+
+.main-content{
+    flex:1;
+    padding:40px;
+}
+
+/* =========================
+   TOPBAR
+========================= */
+
+.topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:35px;
+}
+
+.topbar h1{
+    font-size:34px;
+    font-weight:700;
+    margin-bottom:8px;
+}
+
+.selector-fecha{
+    display:flex;
+    align-items:center;
+    gap:20px;
+    margin-top:10px;
+}
+
+.flecha{
+    text-decoration:none;
+    color:#5b7fff;
+    font-size:24px;
+    font-weight:700;
+    transition:.2s;
+}
+
+.flecha:hover{
+    transform:scale(1.2);
+}
+
+.fecha-completa{
+    font-size:18px;
+    font-weight:600;
+    color:#667085;
+}
+
+.consulta-title{
+    margin-top:10px;
+    font-size:1rem;
+    color:#667085;
+    font-weight:600;
+}
+
+/* =========================
+   BOTONES
+========================= */
+
+.acciones-top{
+    display:flex;
+    gap:12px;
+}
+
+.consulta-btn,
+.urgencia-btn{
+    border:none;
+    padding:12px 18px;
+    border-radius:12px;
+    cursor:pointer;
+    font-weight:600;
+    transition:.2s;
+}
+
+.consulta-btn{
+    background:white;
+    border:1px solid #d1d5db;
+}
+
+.consulta-btn.active{
+    background:#22c55e;
+    color:white;
+}
+
+.urgencia-btn{
+    background:#f59e0b;
+    color:white;
+    text-decoration:none;
+}
+
+.urgencia-btn:hover{
+    opacity:.9;
+}
+
+/* =========================
+   TABLAS
+========================= */
+
+.tabla-container{
+    background:white;
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:0 2px 8px rgba(0,0,0,.04);
+}
+
+.agenda-table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+.agenda-table thead{
+    background:#dbeafe;
+}
+
+.agenda-table th{
+    text-align:left;
+    padding:18px 16px;
+    font-size:14px;
+    color:#374151;
+    font-weight:700;
+}
+
+.agenda-table td{
+    padding:16px;
+    border-bottom:1px solid #f1f5f9;
+    font-size:14px;
+}
+
+.agenda-table tbody tr{
+    transition:.2s;
+}
+
+.agenda-table tbody tr:hover{
+    background:#f8fafc;
+}
+
+/* =========================
+   DATOS
+========================= */
+
+.hora{
+    font-weight:700;
+    color:#0f766e;
+}
+
+.cliente,
+.mascota{
+    font-weight:600;
+}
+
+.motivo{
+    color:#374151;
+}
+
+.detalles{
+    color:#6b7280;
+}
+
+/* =========================
+   ESTADOS
+========================= */
+
+.estado{
+    padding:6px 12px;
+    border-radius:999px;
+    font-size:13px;
+    font-weight:700;
+    display:inline-block;
+}
+
+.estado.PENDIENTE{
+    background:#fef3c7;
+    color:#92400e;
+}
+
+.estado.ASISTIO{
+    background:#fff7ed;
+    color:#ea580c;
+}
+
+.estado.EN_CURSO{
+    background:#dbeafe;
+    color:#1d4ed8;
+}
+
+.estado.COMPLETADA{
+    background:#dcfce7;
+    color:#166534;
+}
+
+/* =========================
+   CHECKBOXES
+========================= */
+
+.check-cell{
+    text-align:center;
+}
+
+.check-cell input{
+    width:18px;
+    height:18px;
+    accent-color:#22c55e;
+    cursor:pointer;
+}
+
+/* =========================
+   CITAS NORMALES
+========================= */
+
+.fila-completada{
+    background:#f0fdf4 !important;
+}
+
+.fila-completada td{
+    color:#166534;
+}
+
+/* =========================
+   URGENCIAS
+========================= */
+
+.urgencias-container{
+    margin-top:40px;
+}
+
+.urgencias-title{
+    margin-bottom:15px;
+    color:#2b2b2b;
+}
+/* URGENCIA VITAL */
+.urgencia-vital{
+    background:#fee2e2;
+}
+
+/* URGENCIA NO VITAL */
+.urgencia-no-vital{
+    background:#fef3c7;
+}
+
+/* VISITA SIN CITA */
+.visita-sin-cita{
+    background:#f3e8ff;
+}
+
+/* Estado visual */
+
+.fila-en-curso{
+    background:#eff6ff !important;
+}
+/* =========================
+   TABLA URGENCIAS
+========================= */
+.urgencias-container{
+    margin-top:50px;
+}
+.urgencias-container .agenda-table{
+    table-layout: fixed;
+}
+
+.urgencias-container .agenda-table th,
+.urgencias-container .agenda-table td{
+    padding: 12px 16px;
+    vertical-align: middle;
+}
+
+.urgencias-container .agenda-table th{
+    font-size: 13px;
+}
+
+.urgencias-container .agenda-table td{
+    font-size: 14px;
+}
+
+/* Anchuras más equilibradas */
+
+.urgencias-container .agenda-table th:nth-child(1){
+    width:80px;      /* Hora */
+}
+
+.urgencias-container .agenda-table th:nth-child(2){
+    width:140px;     /* Estado */
+}
+
+.urgencias-container .agenda-table th:nth-child(3){
+    width:220px;     /* Cliente */
+}
+
+.urgencias-container .agenda-table th:nth-child(4){
+    width:140px;     /* Mascota */
+}
+
+.urgencias-container .agenda-table th:nth-child(5){
+    width:180px;     /* Motivo */
+}
+
+.urgencias-container .agenda-table th:nth-child(7),
+.urgencias-container .agenda-table th:nth-child(8){
+    width:150px;     /* Checks */
+}
+
+/* Centrar checks */
+
+.urgencias-container .check-cell{
+    text-align:center;
+}
+.urgencias-title{
+    padding:20px 24px 10px;
+    margin:0;
+    font-size:30px;
+    font-weight:700;
+}

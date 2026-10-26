@@ -1,0 +1,95 @@
+body{
+    background:#f4f7fb;
+    font-family:'Segoe UI',sans-serif;
+    margin:0;
+}
+
+.container{
+    display:flex;
+    justify-content:center;
+    padding:40px;
+}
+
+.card{
+    background:white;
+    width:700px;
+    padding:30px;
+    border-radius:20px;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+}
+
+h1{
+    margin-bottom:25px;
+}
+
+.form-group{
+    display:flex;
+    flex-direction:column;
+    margin-bottom:20px;
+}
+
+label{
+    font-weight:600;
+    margin-bottom:8px;
+}
+input[type="text"],
+select,
+textarea{
+     padding:12px;
+        border:1px solid #ddd;
+        border-radius:10px;
+        font-size:15px;
+}
+
+.btn-buscar{
+    background:#2d6cdf;
+    color:white;
+    border:none;
+    padding:10px 18px;
+    border-radius:10px;
+    cursor:pointer;
+    width:120px;
+    font-weight:600;
+}
+.buscador-row{
+    display:flex;
+    gap:10px;
+    align-items:center;
+}
+
+.buscador-row input{
+    flex:1;
+}
+.btn-buscar:hover{
+    background:#1f57b7;
+}
+.actions{
+    display:flex;
+    justify-content:flex-end;
+    gap:12px;
+    margin-top:20px;
+}
+
+.btn-cancelar{
+    background:#ddd;
+    color:black;
+    text-decoration:none;
+    padding:12px 18px;
+    border-radius:10px;
+}
+
+.btn-guardar{
+    background:#ff4d4d;
+    color:white;
+    border:none;
+    padding:12px 18px;
+    border-radius:10px;
+    cursor:pointer;
+}
+.cliente-encontrado{
+    background:#eef6ff;
+    border:1px solid #b9d8ff;
+    padding:12px;
+    border-radius:10px;
+    margin-bottom:15px;
+}

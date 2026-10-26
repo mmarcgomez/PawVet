@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <title>Agenda</title>
+
+    <link rel="stylesheet"
+          th:href="@{/css/agenda.css}">
+
+</head>
+
+<body>
+
+<div class="layout">
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            <img th:src="@{/img/logo-paw.png}" alt="logo"/>
+        </div>
+
+        <nav class="menu">
+
+            <a th:href="@{/agenda}" class="active">
+                Agenda de hoy
+            </a>
+
+            <a th:href="@{/clientes/nuevo}">
+                Nuevo cliente
+            </a>
+
+            <a th:href="@{/clientes}">
+                Clientes
+            </a>
+
+            <a th:href="@{/documentacion}">
+                Documentación
+            </a>
+
+            <a th:href="@{/tpv}">
+                TPV
+            </a>
+
+            <a href="#">
+                Inventario
+            </a>
+
+        </nav>
+
+    </aside>
+
+    <!-- CONTENIDO -->
+
+    <main class="main-content">
+
+        <!-- HEADER -->
+
+        <div class="topbar">
+
+            <div>
+
+                <h1>
+                    Clínica Veterinaria Huellas
+                </h1>
+
+                <div class="selector-fecha">
+
+                    <a th:href="@{/agenda(fecha=${fechaAnterior})}"
+                       class="flecha">
+                        ←
+                    </a>
+
+                    <span class="fecha-completa"
+                          th:text="${#temporals.format(fecha,'dd/MM/yyyy')}">
+    </span>
+
+                    <a th:href="@{/agenda(fecha=${fechaSiguiente})}"
+                       class="flecha">
+                        →
+                    </a>
+
+                </div>
+
+                <!-- CONSULTA -->
+
+                <h2 class="consulta-title">
+                    Consulta 2 · Dra. Elena Martínez
+                </h2>
+
+            </div>
+
+            <div class="acciones-top">
+
+                <button class="consulta-btn">
+                    Consulta 1
+                </button>
+
+                <button class="consulta-btn active">
+                    Consulta 2
+                </button>
+
+                <a th:href="@{/citas/urgencia}"
+                   class="urgencia-btn">
+                    + Añadir urgencia
+                </a>
+
+            </div>
+
+        </div>
+
+        <!-- TABLA -->
+
+        <div class="tabla-container">
+
+            <table class="agenda-table">
+
+                <thead>
+
+                <tr>
+
+                    <th>Hora</th>
+
+                    <th>Hora de llegada</th>
+
+                    <th>Estado</th>
+
+                    <th>Cliente</th>
+
+                    <th>Teléfono</th>
+
+                    <th>Mascota</th>
+
+                    <th>Motivo</th>
+
+                    <th>Detalles</th>
+
+                    <th>Asistió</th>
+
+                    <th> LLamado a consulta</th>
+
+                    <th>Finalizada</th>
+
+                </tr>
+
+                </thead>
+
+                <tbody>
+
+                <tr th:each="cita : ${citasNormales}"
+                    th:classappend="${cita.estado.name() == 'COMPLETADA'}
+    ? 'fila-completada'">
+
+                    <!-- HORA -->
+
+                    <td class="hora"
+                        th:text="${#temporals.format(cita.fechaHora, 'HH:mm')}">
+                    </td>
+
+                    <td>
+
+                    <span
+                        th:if="${cita.horaLlegada != null}"
+                        th:text="${#temporals.format(cita.horaLlegada,'HH:mm')}">
+                     </span>
+
+                        <span
+                                th:if="${cita.horaLlegada == null}">
+
+                        </span>
+
+                    </td>
+
+                    <!-- ESTADO -->
+
+                    <td>
+
+        <span class="estado"
+              th:classappend="${cita.estado}"
+              th:text="${cita.estado.label}">
+        </span>
+
+                    </td>
+
+                    <!-- CLIENTE -->
+
+                    <td>
+
+                        <div class="cliente"
+                             th:text="${cita.mascota.cliente.nombre + ' ' + cita.mascota.cliente.apellidos}">
+                        </div>
+
+                    </td>
+
+                    <td>
+                        <div class="cliente"
+                            th:text="${cita.mascota.cliente.telefono}">
+                        </div>
+                    </td>
+
+                    <!-- MASCOTA -->
+
+                    <td>
+
+                        <div class="mascota"
+                             th:text="${cita.mascota.nombre}">
+                        </div>
+
+                    </td>
+
+                    <!-- MOTIVO -->
+
+                    <td>
+
+                        <div class="motivo"
+                             th:text="${cita.motivo.label}">
+                        </div>
+
+                    </td>
+
+                    <!-- DETALLES -->
+
+                    <td>
+
+                        <div class="detalles"
+                             th:text="${cita.detalles}">
+                        </div>
+
+                    </td>
+
+                    <!-- ASISTIÓ -->
+
+                    <td class="check-cell">
+
+                        <form th:action="@{/citas/asistio/{id}(id=${cita.id})}"
+                              method="post">
+
+                            <input type="checkbox"
+                                   onchange="this.form.submit()"
+                                   th:checked="${cita.horaLlegada != null}">
+
+                        </form>
+
+                    </td>
+
+                    <!--- LLAMAR -->
+                    <td class="check-cell">
+
+                        <form th:action="@{/citas/en-consulta/{id}(id=${cita.id})}"
+                              method="post">
+
+                            <input type="checkbox"
+                                   onchange="this.form.submit()"
+                                   th:checked="${cita.estado.name() == 'EN_CURSO'}">
+
+                        </form>
+
+                    </td>
+
+                    <!-- COMPLETAR -->
+
+                    <td class="check-cell">
+
+                        <form th:action="@{/citas/completar/{id}(id=${cita.id})}"
+                              method="post">
+
+                            <input type="checkbox"
+                                   onchange="this.form.submit()"
+                                   th:checked="${cita.estado.name() == 'COMPLETADA'}">
+
+                        </form>
+
+                    </td>
+
+                </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+        <!-- URGENCIAS Y VISITAS SIN CITA -->
+
+        <div class="tabla-container urgencias-container">
+
+            <h2 class="urgencias-title">
+                Urgencias y visitas sin cita
+            </h2>
+
+            <table class="agenda-table">
+
+                <thead>
+
+                <tr>
+
+                    <th>Hora</th>
+                    <th>Estado</th>
+                    <th>Cliente</th>
+                    <th>Mascota</th>
+                    <th>Motivo</th>
+                    <th>Detalles</th>
+                    <th>Llamado a consulta</th>
+                    <th>Finalizada</th>
+
+                </tr>
+
+                </thead>
+
+                <tbody>
+
+                <tr th:each="cita : ${urgencias}"
+
+                    th:classappend="
+                        ${cita.estado.name() == 'COMPLETADA'} ? ' fila-completada' :
+                        (${cita.estado.name() == 'EN_CURSO'} ? ' fila-en-curso' : '')
+                        +
+
+                        (${cita.motivo.name() == 'URGENCIA_VITAL'} ? ' urgencia-vital' :
+                        (${cita.motivo.name() == 'URGENCIA_NO_VITAL'} ? ' urgencia-no-vital' :
+                        ' visita-sin-cita'))
+                        ">
+
+                    <td th:text="${#temporals.format(cita.fechaHora,'HH:mm')}"></td>
+
+                    <td>
+
+                <span class="estado"
+                      th:text="${cita.estado.label}">
+                </span>
+
+                    </td>
+
+                    <td th:text="${cita.mascota.cliente.nombre + ' ' + cita.mascota.cliente.apellidos}"></td>
+
+                    <td th:text="${cita.mascota.nombre}"></td>
+
+                    <td th:text="${cita.motivo.label}"></td>
+
+                    <td th:text="${cita.detalles}"></td>
+                    <td class="check-cell">
+
+                        <form th:action="@{/citas/en-consulta/{id}(id=${cita.id})}"
+                              method="post">
+
+                            <input type="checkbox"
+                                   onchange="this.form.submit()"
+                                   th:checked="${cita.estado.name() == 'EN_CURSO'}">
+
+                        </form>
+
+                    </td>
+
+                    <td class="check-cell">
+
+                        <form th:action="@{/citas/completar/{id}(id=${cita.id})}"
+                              method="post">
+
+                            <input type="checkbox"
+                                   onchange="this.form.submit()"
+                                   th:checked="${cita.estado.name() == 'COMPLETADA'}">
+
+                        </form>
+
+                    </td>
+
+                </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </main>
+
+</div>
+
+</body>
+
+</html>

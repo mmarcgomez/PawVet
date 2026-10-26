@@ -1,0 +1,229 @@
+/* =========================
+   RESET
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+/* =========================
+   BODY
+========================= */
+
+body{
+
+    min-height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    padding:40px;
+
+    background:#f4f6f9;
+
+    font-family:"Segoe UI",sans-serif;
+}
+
+/* =========================
+   CARD
+========================= */
+
+.form-card{
+
+    width:100%;
+    max-width:850px;
+
+    background:white;
+
+    padding:50px;
+
+    border-radius:24px;
+
+    box-shadow:
+            0 10px 30px rgba(0,0,0,.08);
+}
+
+/* =========================
+   TITULO
+========================= */
+
+h1{
+
+    font-size:42px;
+
+    margin-bottom:35px;
+
+    color:#1f2937;
+}
+
+/* =========================
+   FORM
+========================= */
+
+form{
+
+    display:flex;
+    flex-direction:column;
+
+    gap:20px;
+}
+
+/* =========================
+   GRUPOS
+========================= */
+
+.form-group{
+
+    display:flex;
+    flex-direction:column;
+
+    gap:8px;
+}
+
+.form-group label{
+
+    font-size:14px;
+
+    font-weight:600;
+
+    color:#64748b;
+}
+
+/* =========================
+   INPUTS
+========================= */
+
+input[type="text"],
+input[type="email"]{
+
+    width:100%;
+
+    padding:16px 18px;
+
+    border:1px solid #d1d5db;
+
+    border-radius:14px;
+
+    font-size:16px;
+
+    transition:.2s;
+}
+
+input:focus{
+
+    outline:none;
+
+    border-color:#2563eb;
+
+    box-shadow:
+            0 0 0 4px rgba(37,99,235,.15);
+}
+
+/* =========================
+   BOTONES
+========================= */
+
+.actions{
+
+    display:flex;
+
+    justify-content:flex-end;
+
+    gap:12px;
+
+    margin-top:10px;
+}
+
+.btn-cancelar{
+
+    text-decoration:none;
+
+    background:#e5e7eb;
+
+    color:#374151;
+
+    padding:14px 22px;
+
+    border-radius:12px;
+
+    font-weight:600;
+
+    transition:.2s;
+}
+
+.btn-cancelar:hover{
+
+    background:#d1d5db;
+}
+
+.btn-guardar{
+
+    border:none;
+
+    background:#2563eb;
+
+    color:white;
+
+    padding:14px 22px;
+
+    border-radius:12px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.2s;
+}
+
+.btn-guardar:hover{
+
+    background:#1d4ed8;
+}
+
+/* =========================
+   SEPARADOR
+========================= */
+
+.separator{
+
+    border:none;
+
+    border-top:1px solid #e5e7eb;
+
+    margin:35px 0;
+}
+
+/* =========================
+   BAJA CLIENTE
+========================= */
+
+.btn-baja{
+
+    width:100%;
+
+    border:none;
+
+    background:#fee2e2;
+
+    color:#b91c1c;
+
+    padding:16px;
+
+    border-radius:14px;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.2s;
+}
+
+.btn-baja:hover{
+
+    background:#fecaca;
+}

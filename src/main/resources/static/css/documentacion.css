@@ -1,0 +1,81 @@
+body{
+    background:#f4f7fb;
+    font-family:'Segoe UI',sans-serif;
+    padding:40px;
+}
+
+.page-container{
+    max-width:1200px;
+    margin:auto;
+}
+
+.topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:30px;
+}
+
+.topbar h1{
+    font-size:2.5rem;
+}
+
+.topbar p{
+    color:#667085;
+}
+
+.back-btn{
+    text-decoration:none;
+    background:#eef2ff;
+    color:#5b7fff;
+    padding:12px 18px;
+    border-radius:12px;
+    font-weight:600;
+}
+
+.categoria-card{
+    background:white;
+    border-radius:24px;
+    padding:30px;
+    margin-bottom:25px;
+    box-shadow:0 8px 25px rgba(0,0,0,.05);
+}
+
+.categoria-card h2{
+    margin-bottom:25px;
+}
+
+.documentos-grid{
+    display:grid;
+    grid-template-columns:
+            repeat(auto-fill,minmax(280px,1fr));
+    gap:20px;
+}
+
+.documento-card{
+
+    text-decoration:none;
+
+    background:#f8fafc;
+
+    border:1px solid #e2e8f0;
+
+    border-radius:16px;
+
+    padding:20px;
+
+    color:#12284c;
+
+    font-weight:600;
+
+    transition:.2s;
+}
+
+.documento-card:hover{
+
+    transform:translateY(-3px);
+
+    background:#eef2ff;
+
+    border-color:#5b7fff;
+}

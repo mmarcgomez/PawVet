@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>
+        Clientes
+    </title>
+
+    <link rel="stylesheet"
+          th:href="@{/css/clientes.css}">
+</head>
+
+<body>
+
+<div class="page">
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            <img th:src="@{/img/logo-paw.png}" alt="logo"/>
+        </div>
+
+        <nav class="menu">
+
+            <a th:href="@{/agenda}" class="active">
+                Agenda de hoy
+            </a>
+
+            <a th:href="@{/clientes/nuevo}">
+                Nuevo cliente
+            </a>
+
+            <a th:href="@{/clientes}">
+                Clientes
+            </a>
+
+            <a th:href="@{/documentacion}">
+                Documentación
+            </a>
+
+            <a th:href="@{/tpv}">
+                TPV
+            </a>
+
+            <a href="#">
+                Inventario
+            </a>
+
+        </nav>
+
+    </aside>
+<div class="contenido">
+
+    <div class="top-bar">
+
+        <h1>
+            Clientes
+        </h1>
+
+        <form method="get"
+              th:action="@{/clientes}"
+              class="search-form">
+
+            <input type="text"
+                   name="busqueda"
+                   placeholder="Buscar por DNI o teléfono">
+
+            <button type="submit">
+                Buscar
+            </button>
+
+        </form>
+
+    </div>
+
+    <div class="clientes-grid">
+
+        <div class="cliente-card"
+             th:each="cliente : ${clientes}">
+
+            <h2 th:text="${cliente.nombre} + ' ' + ${cliente.apellidos}">Nombre Apellidos</h2>
+
+            <p>
+                DNI:
+                <span th:text="${cliente.dni}"></span>
+            </p>
+
+            <p>
+                Teléfono:
+                <span th:text="${cliente.telefono}"></span>
+            </p>
+
+            <p>
+                Ciudad:
+                <span th:text="${cliente.ciudad}"></span>
+            </p>
+
+            <a th:href="@{/clientes/{id}(id=${cliente.id})}"
+               class="btn-ver">
+
+                Ver ficha
+
+            </a>
+
+        </div>
+
+    </div>
+</div>
+</div>
+
+</body>
+</html>

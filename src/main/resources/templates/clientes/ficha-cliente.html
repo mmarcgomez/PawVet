@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Ficha cliente</title>
+
+    <link rel="stylesheet"
+          th:href="@{/css/ficha-cliente.css}">
+</head>
+
+<body>
+
+<div class="page-container">
+
+    <!-- HEADER -->
+
+    <div class="topbar">
+
+        <div>
+            <h1 class="page-title">
+                Ficha de cliente
+            </h1>
+
+            <p class="page-subtitle">
+                Gestión completa del cliente y mascotas
+            </p>
+        </div>
+
+        <div class="top-actions">
+
+            <a th:href="@{/agenda}"
+               class="btn secondary">
+                ← Volver al inicio
+            </a>
+
+            <a th:href="@{/clientes/editar/{id}(id=${cliente.id})}"
+               class="btn primary">
+                Editar ficha
+            </a>
+
+        </div>
+
+    </div>
+
+    <!-- CARD CLIENTE -->
+
+    <section class="card cliente-card">
+
+        <div class="card-header">
+
+            <h2>
+                Datos del cliente
+            </h2>
+
+        </div>
+
+        <div class="cliente-grid">
+
+            <div class="info-block">
+                <span class="label">Nombre</span>
+
+                <span class="value"
+                      th:text="${cliente.nombre + ' ' + cliente.apellidos}">
+                </span>
+            </div>
+
+            <div class="info-block">
+                <span class="label">DNI</span>
+
+                <span class="value"
+                      th:text="${cliente.dni}">
+                </span>
+            </div>
+
+            <div class="info-block">
+                <span class="label">Teléfono</span>
+
+                <span class="value"
+                      th:text="${cliente.telefono}">
+                </span>
+            </div>
+
+            <div class="info-block">
+                <span class="label">Email</span>
+
+                <span class="value"
+                      th:text="${cliente.email}">
+                </span>
+            </div>
+
+            <div class="info-block">
+                <span class="label">Dirección</span>
+
+                <span class="value"
+                      th:text="${cliente.calle}">
+                </span>
+            </div>
+
+            <div class="info-block">
+                <span class="label">Ciudad</span>
+
+                <span class="value"
+                      th:text="${cliente.ciudad}">
+                </span>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- CARD MASCOTAS -->
+
+    <section class="card mascotas-card">
+
+        <div class="card-header">
+
+            <h2>
+                Mascotas
+            </h2>
+
+            <a th:href="@{/mascotas/nueva(clienteId=${cliente.id})}"
+               class="btn primary">
+
+                + Añadir mascota
+
+            </a>
+
+        </div>
+
+        <!-- SI NO HAY MASCOTAS -->
+
+        <div class="empty-state"
+             th:if="${#lists.isEmpty(cliente.mascotas)}">
+
+            <p>
+                Este cliente todavía no tiene mascotas registradas.
+            </p>
+
+        </div>
+
+        <!-- LISTA MASCOTAS -->
+
+        <div class="mascotas-grid"
+             th:if="${not #lists.isEmpty(cliente.mascotas)}">
+
+            <div class="pet-card"
+                 th:each="mascota : ${cliente.mascotas}"
+                 th:classappend="${!mascota.activo} ? ' pet-inactiva'">
+
+                <div class="pet-top">
+
+                    <div>
+
+                        <h3 th:text="${mascota.nombre}">
+                        </h3>
+
+                        <span class="pet-species"
+                              th:text="${mascota.especie}">
+                        </span>
+
+                    </div>
+
+                    <div class="pet-badge"
+                         th:text="${mascota.activo} ? 'Activa' : 'Baja'"
+                         th:classappend="${!mascota.activo} ? ' baja'">
+                    </div>
+
+                </div>
+
+                <div class="pet-info">
+
+                    <div class="info-line">
+                        <span>Raza:</span>
+
+                        <strong th:text="${mascota.raza}">
+                        </strong>
+                    </div>
+
+                    <div class="info-line">
+                        <span>Sexo:</span>
+
+                        <strong th:text="${mascota.sexo.label}">
+                        </strong>
+                    </div>
+
+                    <div class="info-line">
+                        <span>Edad:</span>
+
+                        <strong th:text="${mascota.edad}">
+                        </strong>
+                    </div>
+
+                </div>
+
+                <div class="pet-actions">
+
+                    <a th:href="@{/mascotas/{id}(id=${mascota.id})}"
+                       class="btn secondary small">
+                        Ver ficha
+                    </a>
+
+                    <a th:if="${mascota.activo}"
+                       th:href="@{/citas/nueva/{id}(id=${mascota.id})}"
+                       class="btn primary small">
+
+                        Nueva cita
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</div>
+
+</body>
+</html>

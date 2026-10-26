@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Nueva urgencia</title>
+
+    <link rel="stylesheet"
+          th:href="@{/css/nueva-urgencia.css}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="card">
+
+        <h1>Nueva urgencia / visita sin cita</h1>
+
+        <form th:action="@{/citas/guardar-urgencia}"
+              method="post">
+
+            <!-- BUSCADOR -->
+
+            <div class="form-group">
+
+                <label>Buscar cliente</label>
+
+                <div class="buscador-row">
+
+                    <input type="text"
+                           name="busqueda"
+                           placeholder="DNI, teléfono o nombre"
+                           th:value="${busqueda}">
+
+                    <button type="submit"
+                            formaction="/citas/urgencia"
+                            formmethod="get"
+                            class="btn-buscar">
+
+                        Buscar
+
+                    </button>
+
+                </div>
+
+            </div>
+
+            <!-- CLIENTE ENCONTRADO -->
+
+            <div th:if="${clienteEncontrado != null}"
+                 class="cliente-encontrado">
+
+                <strong
+                        th:text="${clienteEncontrado.nombre + ' ' + clienteEncontrado.apellidos}">
+                </strong>
+
+                <br>
+
+                <span
+                        th:text="${clienteEncontrado.telefono}">
+                </span>
+
+            </div>
+
+            <!-- MASCOTAS -->
+
+            <div class="form-group"
+                 th:if="${clientesEncontrados != null}">
+
+                <label>Mascota</label>
+
+                <select name="mascotaId"
+                        required>
+
+                    <option value="">
+                        Selecciona mascota
+                    </option>
+
+                    <th:block th:each="cliente : ${clientesEncontrados}">
+
+                        <option th:each="mascota : ${cliente.mascotas}"
+                                th:if="${mascota.activo}"
+                                th:value="${mascota.id}"
+                                th:text="${mascota.nombre}">
+                        </option>
+
+                    </th:block>
+
+                </select>
+
+            </div>
+
+            <!-- TIPO -->
+
+            <div class="form-group">
+
+                <label>Tipo</label>
+
+                <select name="motivo"
+                        required>
+
+                    <option value="URGENCIA_VITAL">
+                        🚨 Urgencia vital
+                    </option>
+
+                    <option value="URGENCIA_NO_VITAL">
+                        ⚠️ Urgencia no vital
+                    </option>
+
+                    <option value="VISITA_SIN_CITA">
+                        🟣 Visita sin cita previa
+                    </option>
+
+                </select>
+
+            </div>
+
+            <!-- DETALLES -->
+
+            <div class="form-group">
+
+                <label>Detalles *</label>
+
+                <textarea
+                        name="detalles"
+                        rows="6"
+                        required
+                        placeholder="Describe el motivo de la visita"></textarea>
+
+            </div>
+
+            <!-- BOTONES -->
+
+            <div class="actions">
+
+                <a th:href="@{/agenda}"
+                   class="btn-cancelar">
+
+                    Cancelar
+
+                </a>
+
+                <button type="submit"
+                        class="btn-guardar">
+
+                    Registrar
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+</html>

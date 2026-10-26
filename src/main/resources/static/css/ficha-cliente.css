@@ -1,0 +1,197 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI', sans-serif;
+}
+
+body{
+    background:#f4f7fb;
+    padding:40px;
+    color:#1f2937;
+}
+
+.page-container{
+    max-width:1400px;
+    margin:auto;
+}
+
+.topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:30px;
+}
+
+.page-title{
+    font-size:32px;
+    font-weight:700;
+}
+
+.page-subtitle{
+    color:#6b7280;
+    margin-top:5px;
+}
+
+.top-actions{
+    display:flex;
+    gap:15px;
+}
+
+.card{
+    background:white;
+    border-radius:24px;
+    padding:30px;
+    margin-bottom:25px;
+    box-shadow:0 8px 25px rgba(0,0,0,0.05);
+}
+
+.card-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:25px;
+}
+
+.card-header h2{
+    font-size:24px;
+}
+
+.cliente-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+}
+
+.info-block{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+}
+
+.label{
+    font-size:14px;
+    color:#6b7280;
+}
+
+.value{
+    font-size:18px;
+    font-weight:600;
+}
+
+.mascotas-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    gap:20px;
+}
+
+.pet-card{
+    border:1px solid #e5e7eb;
+    border-radius:20px;
+    padding:20px;
+    transition:0.2s;
+}
+
+.pet-card:hover{
+    transform:translateY(-3px);
+    box-shadow:0 10px 20px rgba(0,0,0,0.05);
+}
+
+.pet-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.pet-top h3{
+    font-size:22px;
+}
+
+.pet-species{
+    color:#6b7280;
+    font-size:14px;
+}
+
+.pet-badge{
+    background:#dcfce7;
+    color:#166534;
+    padding:6px 12px;
+    border-radius:999px;
+    font-size:12px;
+    font-weight:600;
+}
+
+.pet-info{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    margin-bottom:20px;
+}
+
+.info-line{
+    display:flex;
+    justify-content:space-between;
+}
+
+.pet-actions{
+    display:flex;
+    gap:10px;
+}
+
+.btn{
+    border:none;
+    text-decoration:none;
+    padding:12px 18px;
+    border-radius:12px;
+    font-weight:600;
+    cursor:pointer;
+    transition:0.2s;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.btn.primary{
+    background:#5b7fff;
+    color:white;
+}
+
+.btn.primary:hover{
+    background:#4668e8;
+}
+
+.btn.secondary{
+    background:#eef2ff;
+    color:#4f46e5;
+}
+
+.btn.secondary:hover{
+    background:#dfe7ff;
+}
+
+.btn.small{
+    padding:10px 14px;
+    font-size:14px;
+}
+
+.empty-state{
+    padding:40px;
+    text-align:center;
+    color:#6b7280;
+    border:2px dashed #d1d5db;
+    border-radius:18px;
+}
+.pet-inactiva{
+
+    opacity:0.65;
+
+    background:#f8fafc;
+}
+
+.pet-badge.baja{
+
+    background:#fee2e2;
+
+    color:#b91c1c;
+}

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <title>TPV</title>
+
+    <link rel="stylesheet"
+          th:href="@{/css/tpv.css}">
+
+</head>
+
+<body>
+
+<div class="tpv-container">
+
+    <div class="tpv-header">
+
+        <h1>TPV Clínica</h1>
+
+        <a th:href="@{/agenda}"
+           class="volver-btn">
+            ← Volver
+        </a>
+
+    </div>
+
+    <div class="ticket-card">
+
+        <h2>Venta actual</h2>
+
+        <div class="linea">
+            <span>Vacunación</span>
+            <span>35€</span>
+        </div>
+
+        <div class="linea">
+            <span>Desparasitación</span>
+            <span>18€</span>
+        </div>
+
+        <div class="linea">
+            <span>Corte de uñas</span>
+            <span>10€</span>
+        </div>
+
+        <div class="total">
+            <span>Total</span>
+            <span>63€</span>
+        </div>
+
+        <div class="metodos">
+
+            <button>💳 Tarjeta</button>
+
+            <button>💵 Efectivo</button>
+
+            <button>📱 Bizum</button>
+
+        </div>
+
+        <button class="cobrar-btn">
+            Cobrar
+        </button>
+
+    </div>
+
+</div>
+
+</body>
+</html>

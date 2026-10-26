@@ -1,0 +1,67 @@
+body{
+    background:#f4f7fb;
+    font-family:'Segoe UI',sans-serif;
+    padding:40px;
+}
+
+.tpv-container{
+    max-width:900px;
+    margin:auto;
+}
+
+.tpv-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:30px;
+}
+
+.ticket-card{
+    background:white;
+    border-radius:24px;
+    padding:30px;
+    box-shadow:0 10px 30px rgba(0,0,0,.05);
+}
+
+.linea,
+.total{
+    display:flex;
+    justify-content:space-between;
+    padding:15px 0;
+}
+
+.total{
+    font-size:24px;
+    font-weight:700;
+    border-top:2px solid #eee;
+    margin-top:15px;
+}
+
+.metodos{
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+    gap:15px;
+    margin-top:30px;
+}
+
+.metodos button{
+    border:none;
+    background:#eef2ff;
+    padding:20px;
+    border-radius:16px;
+    cursor:pointer;
+    font-weight:600;
+}
+
+.cobrar-btn{
+    width:100%;
+    margin-top:25px;
+    border:none;
+    background:#22c55e;
+    color:white;
+    height:60px;
+    border-radius:16px;
+    font-size:18px;
+    font-weight:700;
+    cursor:pointer;
+}

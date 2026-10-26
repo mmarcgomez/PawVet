@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+  <title>Documentación</title>
+
+  <link rel="stylesheet"
+        th:href="@{/css/documentacion.css}">
+
+</head>
+
+<body>
+
+<div class="page-container">
+
+  <div class="topbar">
+
+    <div>
+
+      <h1>Documentación</h1>
+
+      <p>Plantillas y documentos de la clínica</p>
+
+    </div>
+
+    <a th:href="@{/agenda}"
+       class="back-btn">
+
+      ← Volver
+
+    </a>
+
+  </div>
+
+  <!-- VETERINARIO -->
+
+  <section class="categoria-card">
+
+    <h2>🩺 Veterinario</h2>
+
+    <div class="documentos-grid">
+
+      <a th:href="@{/docs/Veterinario/ConsentimientoAnestesia.pdf}"
+         target="_blank" class="documento-card">
+        📄 ConsentimientoAnestesia.pdf
+      </a>
+
+      <a th:href="@{/docs/Veterinario/InformacionAnestesia.pdf}"
+         target="_blank" class="documento-card">
+        📄 InformacionAnestesia.pdf
+      </a>
+
+      <a th:href="@{/docs/Veterinario/HojaQuirurgica.pdf}"
+         target="_blank" class="documento-card">
+        📄 HojaQuirurgica.pdf
+      </a>
+
+      <a th:href="@{/docs/Veterinario/Receta.pdf}"
+         target="_blank" class="documento-card">
+        📄 Receta.pdf
+      </a>
+
+    </div>
+
+  </section>
+
+  <!-- ADMINISTRACION -->
+
+  <section class="categoria-card">
+
+    <h2>📁 Administración</h2>
+
+    <div class="documentos-grid">
+
+      <a th:href="@{/docs/Administracion/SolicitudBaja.pdf}"
+         target="_blank" class="documento-card">
+        📄 BajaCliente.pdf
+      </a>
+
+      <a th:href="@{/docs/Administracion/JustificanteAsistencia.pdf}"
+         target="_blank" class="documento-card">
+        📄 JustificanteAsistencia.pdf
+      </a>
+
+    </div>
+
+  </section>
+
+</div>
+
+</body>
+
+</html>

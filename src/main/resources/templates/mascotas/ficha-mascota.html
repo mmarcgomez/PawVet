@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <title>Ficha mascota</title>
+
+  <link rel="stylesheet"
+        th:href="@{/css/ficha-mascota.css}">
+
+</head>
+
+<body>
+
+<div class="page-container">
+
+  <!-- HEADER -->
+
+  <div class="topbar">
+
+    <div>
+
+      <h1 th:text="${mascota.nombre}">
+        Pistacho
+      </h1>
+
+      <p>
+        Ficha completa de mascota
+      </p>
+
+    </div>
+
+    <a th:href="@{/clientes/{id}(id=${mascota.cliente.id})}"
+       class="btn secondary">
+
+      ← Volver al cliente
+
+    </a>
+
+  </div>
+
+  <!-- CARD -->
+
+  <section class="card">
+
+    <div class="card-header">
+
+      <h2>
+        Datos de la mascota
+      </h2>
+
+    </div>
+
+    <div class="info-grid">
+
+      <div class="info-block">
+        <span>Especie</span>
+        <strong th:text="${mascota.especie}"></strong>
+      </div>
+
+      <div class="info-block">
+        <span>Raza</span>
+        <strong th:text="${mascota.raza}"></strong>
+      </div>
+
+      <div class="info-block">
+        <span>Sexo</span>
+        <strong th:text="${mascota.sexo.label}"></strong>
+      </div>
+
+      <div class="info-block">
+        <span>Edad</span>
+        <strong th:text="${mascota.edad}"></strong>
+      </div>
+
+      <div class="info-block">
+        <span>Cliente</span>
+        <strong th:text="${mascota.cliente.nombre + ' ' + mascota.cliente.apellidos}">
+        </strong>
+      </div>
+
+      <div class="info-block">
+        <span>Estado</span>
+
+        <strong th:text="${mascota.activo ? 'Activa' : 'Baja'}">
+        </strong>
+      </div>
+
+    </div>
+    <section class="card">
+
+      <h2>Próximas citas</h2>
+
+      <div th:if="${#lists.isEmpty(proximasCitas)}">
+
+        No hay citas programadas.
+
+      </div>
+
+      <div th:each="cita : ${proximasCitas}"
+           class="cita-card">
+
+        <div>
+
+          <strong
+                  th:text="${#temporals.format(cita.fechaHora,'dd/MM/yyyy HH:mm')}">
+          </strong>
+
+        </div>
+
+        <div
+                th:text="${cita.motivo.label}">
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- BOTONES -->
+
+    <div class="acciones-mascota">
+
+      <a th:href="@{/mascotas/editar/{id}(id=${mascota.id})}"
+         class="btn primary">
+
+        Editar ficha
+
+      </a>
+
+      <a th:href="@{/citas/nueva/{id}(id=${mascota.id})}"
+         class="btn secondary">
+
+        Nueva cita
+
+      </a>
+
+      <button type="button"
+              class="btn danger"
+              onclick="abrirModal()">
+
+        Dar de baja
+
+      </button>
+
+    </div>
+
+  </section>
+
+</div>
+
+<!-- MODAL -->
+
+<div id="modalBaja"
+     class="modal">
+
+  <div class="modal-content">
+
+    <h2>
+      Dar de baja mascota
+    </h2>
+
+    <p>
+
+      ¿Seguro que deseas dar de baja a
+
+      <strong th:text="${mascota.nombre}">
+        Mascota
+      </strong>
+
+      ?
+
+    </p>
+
+    <p class="modal-warning">
+
+      La mascota dejará de aparecer como activa
+      y no podrá recibir nuevas citas.
+
+    </p>
+
+    <div class="modal-actions">
+
+      <button type="button"
+              class="btn secondary"
+              onclick="cerrarModal()">
+
+        Cancelar
+
+      </button>
+
+      <form th:action="@{/mascotas/baja/{id}(id=${mascota.id})}"
+            method="post">
+
+        <button type="submit"
+                class="btn danger">
+
+          Sí, dar de baja
+
+        </button>
+
+      </form>
+
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+
+  function abrirModal() {
+
+      document
+          .getElementById("modalBaja")
+          .style.display = "flex";
+  }
+
+  function cerrarModal() {
+
+      document
+          .getElementById("modalBaja")
+          .style.display = "none";
+  }
+
+  window.onclick = function(event) {
+
+      const modal =
+          document.getElementById("modalBaja");
+
+      if(event.target === modal){
+
+          cerrarModal();
+      }
+  }
+
+</script>
+
+</body>
+
+</html>

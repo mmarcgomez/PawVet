@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <title>Editar cliente</title>
+
+  <link rel="stylesheet"
+        th:href="@{/css/editar-cliente.css}">
+
+</head>
+
+<body>
+
+
+<div class="form-card">
+
+  <h1>Editar cliente</h1>
+
+  <form th:action="@{/clientes/actualizar}"
+        method="post">
+
+    <input type="hidden"
+           name="id"
+           th:value="${cliente.id}">
+
+    <div class="form-group">
+
+      <label for="nombre">
+        Nombre
+      </label>
+
+      <input type="text"
+             id="nombre"
+             name="nombre"
+             th:value="${cliente.nombre}"
+             required>
+
+    </div>
+
+    <div class="form-group">
+
+      <label for="apellidos">
+        Apellidos
+      </label>
+
+      <input type="text"
+             id="apellidos"
+             name="apellidos"
+             th:value="${cliente.apellidos}"
+             required>
+
+    </div>
+
+    <div class="form-group">
+
+      <label for="telefono">
+        Teléfono
+      </label>
+
+      <input type="text"
+             id="telefono"
+             name="telefono"
+             th:value="${cliente.telefono}">
+
+    </div>
+
+    <div class="form-group">
+
+      <label for="calle">
+        Dirección
+      </label>
+
+      <input type="text"
+             id="calle"
+             name="calle"
+             th:value="${cliente.calle}">
+
+    </div>
+
+    <div class="form-group">
+
+      <label for="email">
+        Email
+      </label>
+
+      <input type="email"
+             id="email"
+             name="email"
+             th:value="${cliente.email}">
+
+    </div>
+
+    <div class="actions">
+
+      <a th:href="@{/clientes/{id}(id=${cliente.id})}"
+         class="btn-cancelar">
+        Cancelar
+      </a>
+
+      <button type="submit"
+              class="btn-guardar">
+        Guardar cambios
+      </button>
+
+    </div>
+
+  </form>
+
+  <hr class="separator">
+
+  <form th:action="@{/clientes/baja/{id}(id=${cliente.id})}"
+        method="post">
+
+    <button type="submit"
+            class="btn-baja"
+            onclick="return confirm('¿Dar de baja este cliente?');">
+
+      Dar de baja cliente
+
+    </button>
+
+  </form>
+
+</div>
+
+</body>
+</html>
